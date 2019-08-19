@@ -40,6 +40,13 @@ njreflinks(){
      gedit $HOME/Documents/library/reference/reference-links.txt   
   elif [ "${1}" == "-n" ]; then
     echo -e $2 " -> " $3 "\n" >> $HOME/Documents/library/reference/reference-links.txt
+  elif [ "${1}" == "-c" ]; then
+     echo "Total result is: "
+     cat $HOME/Documents/library/reference/reference-links.txt | grep "\->" -c
+  elif [ "${1}" == "-s" ]; then
+     cat $HOME/Documents/library/reference/reference-links.txt | grep $2
+     echo "Total search results: "
+     cat $HOME/Documents/library/reference/reference-links.txt | grep $2 -c
   elif [ "${1}" == "-h" ]; then
     echo -e "\nThis command is used to manage the reference links
 you can create, list, open the file but you can not 
@@ -47,6 +54,8 @@ remove the reference links.\n
     
   -n  update the new reference 
   -o  open the reference links files 
+  -c  total reference links
+  -s  search the reference links based on grep regular expression   
   -h  list the links in the reference file \n
 
 Examples:
@@ -54,7 +63,9 @@ Examples:
 2. njreflinks -l
 "
   else 
-    echo "Pass the parameters" 
+    echo -e "Pass the parameters
+else find help by using njreflinks -h  
+" 
   fi 
 
 } ' >> ~/.bashrc
